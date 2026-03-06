@@ -6,6 +6,8 @@ Simple one-page landing site for **RallyCast** hosted on GitHub Pages.
 
 - `index.html` - Landing page markup and styles (no external dependencies)
 - `CNAME` - Custom domain for GitHub Pages (`rallycast.app`)
+- `assets/rallycast_app_icon.png` - App icon used in the header
+- `assets/rallycast_feature_graphic.png` - Feature graphic shown on the page
 
 ## GitHub Pages Setup
 
