@@ -5,6 +5,7 @@ Simple one-page landing site for **RallyCast** hosted on GitHub Pages.
 ## Files
 
 - `index.html` - Landing page markup and styles (no external dependencies)
+- `privacy.html` - Privacy policy page for the app and website
 - `CNAME` - Custom domain for GitHub Pages (`rallycast.app`)
 - `assets/rallycast_app_icon.png` - App icon used in the header
 - `assets/rallycast_feature_graphic.png` - Feature graphic shown on the page

@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RallyCast Privacy Policy</title>
+  <meta
+    name="description"
+    content="Privacy Policy for RallyCast, the weather intelligence app for court sports."
+  />
+  <style>
+    :root {
+      --bg: #0b3d2e;
+      --panel: #ffffff;
+      --text: #ffffff;
+      --body: #171717;
+      --muted: #5b5b5b;
+      --link: #0b3d2e;
+      --border: #d9e3dd;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, system-ui, -apple-system, Segoe UI, sans-serif;
+      line-height: 1.6;
+      padding: 1.25rem;
+    }
+
+    main {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand img {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: block;
+    }
+
+    .back {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .panel {
+      background: var(--panel);
+      color: var(--body);
+      border-radius: 16px;
+      padding: clamp(1.25rem, 3vw, 2rem);
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.24);
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    p,
+    li {
+      font-size: 1rem;
+    }
+
+    p + p {
+      margin-top: 0.7rem;
+    }
+
+    ul {
+      margin: 0.6rem 0 0 1.2rem;
+    }
+
+    li + li {
+      margin-top: 0.35rem;
+    }
+
+    .muted {
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    a {
+      color: var(--link);
+    }
+
+    .note {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 0.9rem 1rem;
+      margin-top: 1rem;
+      background: #f8fbf9;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="topbar">
+      <div class="brand">
+        <img src="assets/rallycast_app_icon.png" alt="RallyCast app icon" />
+        <strong>RallyCast</strong>
+      </div>
+      <a class="back" href="./">Back to Home</a>
+    </div>
+
+    <section class="panel">
+      <h1>Privacy Policy</h1>
+      <p class="muted">Last updated: March 9, 2026</p>
+
+      <p>
+        RallyCast provides weather-based playability guidance for tennis and pickleball. This
+        Privacy Policy explains what information the app uses, how it is used, and what choices
+        you have.
+      </p>
+
+      <h2>Information the app uses</h2>
+      <ul>
+        <li>Your device location, if you choose GPS mode and grant location permission.</li>
+        <li>Your manual location input, such as a city, state, or ZIP code.</li>
+        <li>Your selected date and time for a playability check.</li>
+        <li>Your session preferences, such as session preset and tolerance level.</li>
+        <li>Optional tracked-session data if you enable weather change tracking.</li>
+      </ul>
+
+      <h2>How RallyCast uses this information</h2>
+      <ul>
+        <li>To look up forecast and geocoding data needed to calculate playability.</li>
+        <li>To generate a 0-100 playability score and rating categories.</li>
+        <li>To remember your settings locally on your device.</li>
+        <li>To send optional notifications when a tracked session's rating changes.</li>
+      </ul>
+
+      <h2>Location data</h2>
+      <p>
+        If you grant location access, RallyCast uses your device location only to help determine
+        weather conditions for your selected session. You can also use the app without GPS by
+        entering a location manually.
+      </p>
+
+      <h2>Third-party services</h2>
+      <p>
+        RallyCast sends location queries and forecast-related requests to Open-Meteo to retrieve
+        weather and geocoding data. If you use GPS mode, the app also relies on Android and Google
+        Play services location features available on your device.
+      </p>
+
+      <h2>Data stored on your device</h2>
+      <p>
+        RallyCast stores certain settings locally on your device using app preferences. This may
+        include your location mode, manual location input, resolved location, session preset,
+        tolerance level, and up to three tracked sessions for notification purposes.
+      </p>
+
+      <h2>Notifications</h2>
+      <p>
+        If you allow notifications and enable session tracking, RallyCast may check for forecast
+        changes before your saved session and notify you if the playability rating changes.
+      </p>
+
+      <h2>What RallyCast does not do</h2>
+      <ul>
+        <li>RallyCast does not require account creation.</li>
+        <li>RallyCast does not sell your personal information.</li>
+        <li>RallyCast does not use an in-app advertising SDK in this project.</li>
+      </ul>
+
+      <h2>Data retention and control</h2>
+      <p>
+        Preferences and tracked sessions remain on your device until you change them, remove
+        tracked sessions, clear app storage, or uninstall the app.
+      </p>
+
+      <h2>Changes to this policy</h2>
+      <p>
+        This Privacy Policy may be updated as RallyCast evolves. The latest version will be posted
+        on this page.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        For privacy questions about RallyCast, use the repository at
+        <a href="https://github.com/RamMusalae/rallycast-site">github.com/RamMusalae/rallycast-site</a>.
+      </p>
+
+      <div class="note">
+        This page describes the current behavior reflected in this project as of March 9, 2026.
+      </div>
+    </section>
+  </main>
+</body>
+</html>
