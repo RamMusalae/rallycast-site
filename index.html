@@ -3,19 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>RallyCast | Weather Intelligence for Court Sports</title>
+  <title>RallyCast | Court-Ready Weather Decisions</title>
   <meta
     name="description"
-    content="RallyCast turns wind, rain, temperature, and humidity into a clear 0-100 playability score for tennis and pickleball."
+    content="RallyCast helps tennis, pickleball, and badminton players decide when to play using live weather scoring, best-time windows, and location-aware forecasting."
   />
   <style>
     :root {
-      --bg: #0b3d2e;
-      --text: #ffffff;
-      --card-bg: #ffffff;
-      --card-text: #000000;
-      --muted: #1a1a1a;
-      --chip: #f3f3f3;
+      --bg: #071d31;
+      --bg-soft: #0d2f4f;
+      --panel: rgba(10, 35, 58, 0.82);
+      --panel-solid: #102f4b;
+      --line: rgba(255, 255, 255, 0.12);
+      --text: #f6fbff;
+      --muted: #bfd5ea;
+      --accent: #85d9bf;
+      --accent-strong: #1d7d45;
+      --accent-soft: #dff8ee;
+      --card: #f7fbff;
+      --card-text: #173046;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
     }
 
     * {
@@ -26,173 +33,416 @@
 
     body {
       min-height: 100vh;
-      background: var(--bg);
+      background:
+        radial-gradient(circle at top left, rgba(36, 113, 82, 0.34), transparent 32%),
+        radial-gradient(circle at top right, rgba(116, 198, 162, 0.18), transparent 24%),
+        linear-gradient(180deg, #071d31 0%, #0e2c49 52%, #12395a 100%);
       color: var(--text);
-      font-family: Arial, system-ui, -apple-system, Segoe UI, sans-serif;
-      display: grid;
-      place-items: center;
-      padding: 1.25rem;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
       line-height: 1.5;
+      padding: 1.25rem;
     }
 
     main {
-      width: 100%;
-      max-width: 860px;
-      text-align: center;
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: linear-gradient(135deg, rgba(8, 31, 47, 0.95), rgba(13, 51, 76, 0.9));
+      box-shadow: var(--shadow);
+      padding: clamp(1.5rem, 4vw, 3rem);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -8% -16% auto;
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(133, 217, 191, 0.3), transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 1.5rem;
+      align-items: center;
     }
 
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 0.85rem;
-      margin-bottom: 0.45rem;
+      gap: 0.9rem;
+      margin-bottom: 1rem;
     }
 
     .brand img {
-      width: clamp(52px, 9vw, 76px);
-      height: clamp(52px, 9vw, 76px);
-      border-radius: 14px;
-      display: block;
+      width: 64px;
+      height: 64px;
+      border-radius: 18px;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.28);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      border: 1px solid rgba(133, 217, 191, 0.4);
+      background: rgba(133, 217, 191, 0.12);
+      color: var(--accent-soft);
+      border-radius: 999px;
+      padding: 0.45rem 0.85rem;
+      font-size: 0.86rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      letter-spacing: 0.02em;
     }
 
     h1 {
-      font-size: clamp(2.2rem, 7vw, 4rem);
-      letter-spacing: 0.03em;
-      margin: 0;
+      font-size: clamp(2.6rem, 6vw, 4.8rem);
+      line-height: 0.97;
+      margin-bottom: 0.8rem;
     }
 
     .subtitle {
-      font-size: clamp(1rem, 3vw, 1.35rem);
-      margin-bottom: 0.8rem;
-      opacity: 0.96;
-    }
-
-    .tagline {
-      font-size: clamp(1.1rem, 3.2vw, 1.55rem);
-      font-weight: 700;
-      margin-bottom: 1.35rem;
-    }
-
-    .card {
-      background: var(--card-bg);
-      color: var(--card-text);
-      border-radius: 14px;
-      padding: clamp(1rem, 3.5vw, 2rem);
-      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.25);
-      text-align: left;
-    }
-
-    .lead {
-      font-size: clamp(1rem, 2.5vw, 1.15rem);
       color: var(--muted);
-      margin-bottom: 0.95rem;
+      font-size: clamp(1.05rem, 2.2vw, 1.3rem);
+      max-width: 34rem;
+      margin-bottom: 1rem;
     }
 
-    .list {
-      margin: 0 0 1rem 1.1rem;
-    }
-
-    .list li {
-      margin-bottom: 0.35rem;
-    }
-
-    .ratings {
-      list-style: none;
-      display: flex;
-      gap: 0.6rem;
+    .pricing {
+      display: inline-flex;
       flex-wrap: wrap;
-      justify-content: center;
-      margin: 1rem 0;
-      padding: 0;
+      gap: 0.55rem;
+      margin: 0 0 1.1rem;
+      list-style: none;
     }
 
-    .ratings li {
-      background: var(--chip);
+    .pricing li {
       border-radius: 999px;
-      padding: 0.4rem 0.85rem;
-      font-size: 0.95rem;
+      padding: 0.55rem 0.9rem;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.94rem;
       font-weight: 700;
-      white-space: nowrap;
     }
 
-    .meta {
-      text-align: center;
-      color: #303030;
-      font-size: 0.95rem;
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
       margin-bottom: 1rem;
     }
 
-    .coming-soon {
-      text-align: center;
-      font-size: clamp(1.05rem, 2.8vw, 1.4rem);
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0.8rem 1.15rem;
+      border-radius: 999px;
+      text-decoration: none;
       font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
+      letter-spacing: 0.01em;
     }
 
-    .feature {
+    .button-primary {
+      background: var(--accent);
+      color: #0b2035;
+    }
+
+    .button-secondary {
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .feature-panel {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 1rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .feature-panel img {
       width: 100%;
-      border-radius: 12px;
       display: block;
-      box-shadow: 0 8px 26px rgba(0, 0, 0, 0.2);
+      border-radius: 18px;
+      box-shadow: 0 18px 30px rgba(0, 0, 0, 0.22);
+    }
+
+    .feature-panel p {
+      margin-top: 0.8rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .section {
+      border-radius: 26px;
+      padding: clamp(1.25rem, 3vw, 2rem);
+      background: var(--panel);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .section h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin-bottom: 0.45rem;
+    }
+
+    .section .section-intro {
+      color: var(--muted);
+      max-width: 48rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+
+    .feature-card {
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 1rem;
+    }
+
+    .feature-card strong {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-size: 1rem;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .shots {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .shot-card {
+      background: var(--card);
+      color: var(--card-text);
+      border-radius: 22px;
+      padding: 1rem;
+      box-shadow: 0 18px 34px rgba(0, 0, 0, 0.2);
+    }
+
+    .shot-card img {
+      width: 100%;
+      display: block;
+      border-radius: 18px;
+      background: #d9e5ef;
+    }
+
+    .shot-card h3 {
+      margin: 0.85rem 0 0.25rem;
+      font-size: 1.1rem;
+    }
+
+    .shot-card p {
+      color: #476078;
+      font-size: 0.95rem;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.9rem;
+    }
+
+    .stat {
+      border-radius: 18px;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.8rem;
+      color: var(--accent-soft);
+      margin-bottom: 0.25rem;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.94rem;
     }
 
     .footer {
-      margin-top: 1rem;
-      text-align: center;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem;
+      color: var(--muted);
+      font-size: 0.95rem;
     }
 
     .footer a {
-      color: #0b3d2e;
-      font-weight: 700;
+      color: var(--accent-soft);
       text-decoration: none;
+      font-weight: 700;
+    }
+
+    @media (max-width: 920px) {
+      .hero-grid,
+      .feature-grid,
+      .shots,
+      .stats {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
   <main>
-    <div class="brand">
-      <img src="assets/rallycast_app_icon.png" alt="RallyCast app icon" />
-      <h1>RallyCast</h1>
-    </div>
-    <p class="subtitle">Weather Intelligence for Court Sports</p>
-    <p class="tagline">Know before you play.</p>
+    <section class="hero" aria-label="RallyCast hero">
+      <div class="hero-grid">
+        <div>
+          <div class="brand">
+            <img src="assets/rallycast_app_icon.png" alt="RallyCast app icon" />
+            <div>
+              <div class="eyebrow">Now updated for the latest app release</div>
+              <h1>RallyCast</h1>
+            </div>
+          </div>
 
-    <section class="card" aria-label="RallyCast product overview">
-      <p class="lead">
-        RallyCast analyzes wind, rain chance, temperature, and humidity to produce a simple
-        playability decision for tennis or pickleball.
-      </p>
+          <p class="subtitle">
+            Weather-aware decisions for tennis, pickleball, and badminton. RallyCast turns
+            forecast data into a simple score, better time windows, and cleaner go/no-go calls.
+          </p>
 
-      <ul class="list">
-        <li>Single weather score from 0-100</li>
-        <li>Fast result for your selected location, date, and time</li>
-        <li>Forecast support up to 10 days ahead</li>
-        <li>Readable summary with key conditions in one line</li>
-      </ul>
+          <ul class="pricing" aria-label="Product details">
+            <li>GPS or manual city / ZIP search</li>
+            <li>Forecasts up to 10 days ahead</li>
+            <li>Yearly plan from $0.99 on Google Play</li>
+          </ul>
 
-      <ul class="ratings" aria-label="Playability rating options">
-        <li>Excellent (85-100)</li>
-        <li>Good (65-84)</li>
-        <li>Maybe (45-64)</li>
-        <li>No (0-44)</li>
-      </ul>
+          <div class="cta-row">
+            <a class="button button-primary" href="#screens">See the latest screens</a>
+            <a class="button button-secondary" href="privacy.html">Privacy Policy</a>
+          </div>
 
-      <p class="meta">Core weather factors: wind speed, rain probability, heat/cold, humidity.</p>
+          <p class="note">
+            Current release messaging reflects the in-app experience, including subscription gating
+            and the updated dismiss flow for the paywall.
+          </p>
+        </div>
 
-      <p class="coming-soon">Coming Soon</p>
-
-      <img
-        class="feature"
-        src="assets/rallycast_feature_graphic.png"
-        alt="RallyCast feature graphic preview"
-      />
-
-      <p class="footer">
-        <a href="privacy.html">Privacy Policy</a>
-      </p>
+        <div class="feature-panel">
+          <img src="assets/rallycast_feature_graphic.png" alt="RallyCast feature graphic" />
+          <p>Fresh feature art and in-app screens from the current emulator build.</p>
+        </div>
+      </div>
     </section>
+
+    <section class="section" aria-label="What RallyCast does">
+      <h2>Built for quick court decisions</h2>
+      <p class="section-intro">
+        RallyCast combines rain chance, wind, humidity, and temperature into a cleaner experience
+        than raw weather browsing. You choose the place and time. The app gives you a simple call.
+      </p>
+
+      <div class="feature-grid">
+        <article class="feature-card">
+          <strong>Playability score</strong>
+          <p>Get a fast 0-100 score with clear ratings from Excellent to No.</p>
+        </article>
+        <article class="feature-card">
+          <strong>Best-time windows</strong>
+          <p>Compare nearby forecast slots and quickly move your session to a better hour.</p>
+        </article>
+        <article class="feature-card">
+          <strong>Location flexibility</strong>
+          <p>Use GPS permission, city/state search, or ZIP input with live suggestions.</p>
+        </article>
+        <article class="feature-card">
+          <strong>Session tracking</strong>
+          <p>Keep up to three sessions active and get notified when conditions change.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="screens" aria-label="Latest app screenshots">
+      <h2>Latest app screens</h2>
+      <p class="section-intro">
+        These captures were refreshed from the latest emulator build so the website matches the
+        current app instead of older launch mockups.
+      </p>
+
+      <div class="shots">
+        <article class="shot-card">
+          <img src="assets/app_landing_latest.png" alt="RallyCast landing screen in the app" />
+          <h3>Updated landing screen</h3>
+          <p>
+            The top of the app now leads with a branded hero, clearer location setup, and the
+            primary planning flow directly underneath.
+          </p>
+        </article>
+
+        <article class="shot-card">
+          <img src="assets/app_subscription_latest.png" alt="RallyCast subscription screen" />
+          <h3>Subscription flow</h3>
+          <p>
+            The latest paywall shows a clear dismiss action, pricing, and management options in a
+            more review-friendly layout.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Latest release highlights">
+      <h2>Latest release snapshot</h2>
+      <p class="section-intro">
+        RallyCast is currently prepared as version 1.0.11 with current weather, subscription, and
+        landing-page updates reflected here.
+      </p>
+
+      <div class="stats">
+        <div class="stat">
+          <strong>3 sports</strong>
+          <span>Tennis, pickleball, and badminton profiles.</span>
+        </div>
+        <div class="stat">
+          <strong>10 days</strong>
+          <span>Forward-looking forecast support for session planning.</span>
+        </div>
+        <div class="stat">
+          <strong>$0.99 / year</strong>
+          <span>Google Play subscription pricing for the yearly plan.</span>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span>RallyCast.app content updated March 27, 2026.</span>
+      <a href="privacy.html">Privacy Policy</a>
+    </footer>
   </main>
 </body>
 </html>
